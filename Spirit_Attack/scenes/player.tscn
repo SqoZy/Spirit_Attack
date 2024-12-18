@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://lfxvgmtpy4a1"]
+
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_mga24"]
+[ext_resource type="Texture2D" uid="uid://dbvy0c75wu728" path="res://assets/Player.png" id="2_p5eae"]
+[ext_resource type="Script" path="res://scripts/HealthManager.cs" id="3_qfq2y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bc6a4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p5eae")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1j4l"]
+size = Vector2(28, 46)
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(2, 10)
+script = ExtResource("1_mga24")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 16)
+scale = Vector2(2.6, 2.6)
+sprite_frames = SubResource("SpriteFrames_bc6a4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 17)
+shape = SubResource("RectangleShape2D_j1j4l")
+
+[node name="HealthManager" type="Node" parent="."]
+script = ExtResource("3_qfq2y")

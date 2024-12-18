@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://boqrcr8ea2baf"]
+
+[ext_resource type="Texture2D" uid="uid://cpvpxtjme4a0h" path="res://assets/blueSquid.png" id="1_30lob"]
+[ext_resource type="Script" path="res://scripts/Enemy.cs" id="1_juvdr"]
+[ext_resource type="Script" path="res://scripts/HealthManager.cs" id="3_abphd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dc0mf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_30lob")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_icti0"]
+size = Vector2(49, 50)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_juvdr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dc0mf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_icti0")
+
+[node name="HealthManager" type="Node" parent="."]
+script = ExtResource("3_abphd")

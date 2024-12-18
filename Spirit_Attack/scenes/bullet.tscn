@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://btaarnp2d58e1"]
+
+[ext_resource type="Script" path="res://scripts/Bullet.cs" id="1_vnjug"]
+[ext_resource type="Texture2D" uid="uid://2ibk62guqdle" path="res://assets/kogel.png" id="2_jrldx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3v7cv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jrldx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjubl"]
+size = Vector2(74, 34)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_vnjug")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_3v7cv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(22, 0)
+shape = SubResource("RectangleShape2D_tjubl")
