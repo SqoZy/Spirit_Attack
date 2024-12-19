@@ -3,5 +3,5 @@ using System;
 
 public partial class BossEnemy : BaseEnemy
 {
-    new int speed = 20;
+	new int speed = 20;
 }
