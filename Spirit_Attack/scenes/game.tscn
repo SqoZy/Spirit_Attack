@@ -19,7 +19,7 @@ enemyScene = ExtResource("3_obb5g")
 bossEnemyScene = ExtResource("4_ysq7j")
 
 [node name="enemyLocation" type="Marker2D" parent="EnemyManager"]
-position = Vector2(181, -30)
+position = Vector2(214, -22)
 
 [node name="bossEnemyLocation" type="Marker2D" parent="EnemyManager"]
-position = Vector2(174, 202)
+position = Vector2(-109, 85)

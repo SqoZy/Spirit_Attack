@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0ld6kructb0c"]
+[gd_scene load_steps=7 format=3 uid="uid://c0ld6kructb0c"]
 
 [ext_resource type="Texture2D" uid="uid://bpgdpjey5dv85" path="res://assets/gothic-hero-crouch-slash_0000_Layer-1.png" id="1_b10w6"]
-[ext_resource type="Script" path="res://scripts/BossEnemy.cs" id="1_sq4lq"]
+[ext_resource type="Script" path="res://scripts/EnemyScripts/BossEnemy.cs" id="1_sq4lq"]
 [ext_resource type="Script" path="res://scripts/HealthManager.cs" id="2_cb3gk"]
+[ext_resource type="Script" path="res://scripts/StateScripts/StateMachine.cs" id="4_sycb2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kqiq0"]
 animations = [{
@@ -30,3 +31,6 @@ shape = SubResource("RectangleShape2D_c5343")
 
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("2_cb3gk")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_sycb2")

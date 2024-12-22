@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://btaarnp2d58e1"]
 
-[ext_resource type="Script" path="res://scripts/Bullet.cs" id="1_vnjug"]
+[ext_resource type="Script" path="res://scripts/WeaponScripts/Bullet.cs" id="1_vnjug"]
 [ext_resource type="Texture2D" uid="uid://2ibk62guqdle" path="res://assets/kogel.png" id="2_jrldx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3v7cv"]
