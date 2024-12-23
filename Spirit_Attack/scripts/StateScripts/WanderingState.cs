@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 
 public partial class WanderingState : State
 {
-    [Export] private CharacterBody2D enemy;
-    [Export] private float speed = 50;
     [Export] private float wanderRadius = 200; // Maximum distance from the central point
     [Export] private float stopDuration = 2.0f; // Duration to stop before wandering again
 

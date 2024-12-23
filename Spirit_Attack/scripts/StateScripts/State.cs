@@ -3,6 +3,8 @@ using System;
 
 public partial class State : Node
 {
+    [Export] protected CharacterBody2D enemy;
+    [Export] protected float speed;
     [Signal]
     public delegate void TransitionedEventHandler();
 

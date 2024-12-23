@@ -4,7 +4,7 @@ using System;
 public partial class BaseEnemy : CharacterBody2D
 {
     protected int speed = 50;
-    protected Node2D player;
+
     protected HealthManager healthManager;
     protected StateMachine stateMachine;
 
