@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://boqrcr8ea2baf"]
+[gd_scene load_steps=9 format=3 uid="uid://boqrcr8ea2baf"]
 
 [ext_resource type="Texture2D" uid="uid://cpvpxtjme4a0h" path="res://assets/blueSquid.png" id="1_30lob"]
 [ext_resource type="Script" path="res://scripts/EnemyScripts/Enemy.cs" id="1_juvdr"]
 [ext_resource type="Script" path="res://scripts/HealthManager.cs" id="3_abphd"]
 [ext_resource type="Script" path="res://scripts/StateScripts/StateMachine.cs" id="4_ryyts"]
 [ext_resource type="Script" path="res://scripts/StateScripts/WanderingState.cs" id="5_v7rdk"]
+[ext_resource type="Script" path="res://scripts/StateScripts/AttackState.cs" id="6_wnavj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dc0mf"]
 animations = [{
@@ -35,8 +36,13 @@ script = ExtResource("3_abphd")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("4_ryyts")
-initialState = NodePath("WanderingState")
+initialState = NodePath("AttackState")
 
 [node name="WanderingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_v7rdk")
 enemy = NodePath("../..")
+
+[node name="AttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_wnavj")
+enemy = NodePath("../..")
+speed = 50.0

@@ -10,7 +10,6 @@ public partial class BaseEnemy : CharacterBody2D
 
     public override void _Ready()
     {
-        player = GetNode<Node2D>("/root/Game/player");
         healthManager = GetNode<HealthManager>("HealthManager");
         stateMachine = GetNode<StateMachine>("StateMachine");
     }
