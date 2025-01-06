@@ -10,6 +10,7 @@ public partial class Player : CharacterBody2D
 	private PackedScene bulletScene;
 	private HealthManager healthManager;
 	private Timer dashTimer;
+	private Timer shootCooldownTimer;
 
 	private bool isSprinting = false;
 	private float sprintMultiplier = 1.5f;
@@ -19,6 +20,8 @@ public partial class Player : CharacterBody2D
 	private float lastDashTime = -1.0f;
 	private float lastSprintPressTime = -1.0f;
 	private float doubleTapTime = 0.3f;
+	private float shootCooldown = 0.5f; // Cooldown duration for shooting
+	private float lastShootTime = -1.0f;
 
 	public override void _Ready()
 	{
@@ -31,6 +34,12 @@ public partial class Player : CharacterBody2D
 		dashTimer.OneShot = true;
 		dashTimer.Connect("timeout", new Callable(this, nameof(EndDash)));
 		AddChild(dashTimer);
+
+		// Initialize the shoot cooldown timer
+		shootCooldownTimer = new Timer();
+		shootCooldownTimer.WaitTime = shootCooldown;
+		shootCooldownTimer.OneShot = true;
+		AddChild(shootCooldownTimer);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -47,7 +56,7 @@ public partial class Player : CharacterBody2D
 	{
 		currentVelocity = Input.GetVector("movementLeftA", "movementRightD", "movementUpW", "movementDownS") * speed;
 
-		if (Input.IsActionJustPressed("projectileFire"))
+		if (Input.IsActionJustPressed("projectileFire") && shootCooldownTimer.IsStopped())
 			Shoot(); // shoot
 
 		if (Input.IsActionJustPressed("sprint-dash"))
@@ -70,10 +79,17 @@ public partial class Player : CharacterBody2D
 
 	private void Shoot()
 	{
-		Bullet bullet = (Bullet)bulletScene.Instantiate();
-		bullet.GlobalPosition = GlobalPosition;
-		bullet.Rotation = GetLocalMousePosition().Angle();
-		GetParent().AddChild(bullet);
+		float currentTime = Time.GetTicksMsec() / 1000.0f;
+		if (currentTime - lastShootTime >= shootCooldown)
+		{
+			Bullet bullet = (Bullet)bulletScene.Instantiate();
+			bullet.GlobalPosition = GlobalPosition;
+			bullet.Rotation = GetLocalMousePosition().Angle();
+			GetParent().AddChild(bullet);
+
+			lastShootTime = currentTime;
+			shootCooldownTimer.Start();
+		}
 	}
 
 	private void Dash()
