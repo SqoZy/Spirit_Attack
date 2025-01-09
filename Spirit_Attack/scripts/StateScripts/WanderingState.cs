@@ -68,10 +68,7 @@ public partial class WanderingState : State
                 enemy.MoveAndSlide();
             }
         }
-        else
-        {
-            enemy.Velocity = Vector2.Zero;
-        }
+        else enemy.Velocity = Vector2.Zero;
     }
 
     public override void Exit()

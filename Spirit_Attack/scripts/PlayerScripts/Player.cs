@@ -24,7 +24,7 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        bulletScene = GD.Load<PackedScene>("res://scenes/Bullet.tscn");
+        bulletScene = GD.Load<PackedScene>("res://scenes/bullet.tscn");
         healthManager = GetNode<HealthManager>("HealthManager");
 
         // Initialize the dash timer

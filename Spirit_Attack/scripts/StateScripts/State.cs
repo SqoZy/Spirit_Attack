@@ -5,12 +5,15 @@ public partial class State : Node
 {
     [Export] protected CharacterBody2D enemy;
     [Export] protected float speed;
+    protected Node2D player;
+
+
     [Signal]
     public delegate void TransitionedEventHandler();
 
     public virtual void Enter()
     {
-
+        player = GetNode<Node2D>("/root/Game/player");
     }
 
     public virtual void Exit()
