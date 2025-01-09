@@ -1,36 +1,40 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class AttackState : State
 {
     protected Node2D player;
     private float range;
 
-    public override void _Ready()
+    public override void Enter()
     {
-        player = GetNode<Node2D>("/root/Game/player");
-
+        base.Enter();
         range = 100;
+        GD.Print("Entering AttackState");
+        InitializePlayerAsync();
     }
 
-    public virtual void Enter() => base.Enter();
-
-    public virtual void Exit() => base.Enter();
-
-    public virtual void Update(float delta)
+    private async void InitializePlayerAsync()
     {
-        // Your update logic here
+        await Task.Delay(2000); // Wait for 2 seconds
+        player = GetNode<Node2D>("/root/Game/player");
+        if (player == null)
+        {
+            GD.PrintErr("Player node not found after delay!");
+        }
+        else
+        {
+            GD.Print("Player node found after delay.");
+        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta); // call the base physics process
-        if (Move == null)
-        {
-            GD.Print("nomove");
-            return;
-        }
+
         Move();
+        Attack();
     }
 
     protected virtual void Attack()
@@ -44,8 +48,6 @@ public partial class AttackState : State
     protected virtual void Move()
     {
         if (player == null) return;
-        if (enemy == null) return;
-
 
         Vector2 direction = (player.GlobalPosition - enemy.GlobalPosition).Normalized();
         enemy.Velocity = direction * speed;

@@ -34,16 +34,15 @@ shape = SubResource("RectangleShape2D_icti0")
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("3_abphd")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_ryyts")
-initialState = NodePath("WanderingState")
-
-[node name="WanderingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("5_v7rdk")
-enemy = NodePath("../..")
-speed = 50.0
 
 [node name="AttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_wnavj")
+enemy = NodePath("../..")
+speed = 50.0
+
+[node name="WanderingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_v7rdk")
 enemy = NodePath("../..")
 speed = 50.0

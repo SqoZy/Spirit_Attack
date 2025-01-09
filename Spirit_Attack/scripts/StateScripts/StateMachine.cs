@@ -32,6 +32,7 @@ public partial class StateMachine : Node
     public void _PhysicsProcess(float delta)
     {
         currentState?.PhysicsUpdate(delta);
+        GD.Print(currentState);
     }
 
     private void OnChildTransition(State state, string newStateName)

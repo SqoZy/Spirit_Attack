@@ -29,7 +29,6 @@ public partial class EnemySpawner : Node2D
     {
         if (enemyScene != null)
         {
-            GD.Print("Spawning enemy at position: ", position);
             Enemy enemy = (Enemy)enemyScene.Instantiate();
             enemy.GlobalPosition = position;
             AddChild(enemy);
@@ -41,7 +40,6 @@ public partial class EnemySpawner : Node2D
     {
         if (bossEnemyScene != null)
         {
-            GD.Print("Spawning boss enemy at position: ", position);
             BossEnemy bossEnemy = (BossEnemy)bossEnemyScene.Instantiate();
             bossEnemy.GlobalPosition = position;
             AddChild(bossEnemy);
