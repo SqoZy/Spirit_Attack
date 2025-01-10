@@ -3,8 +3,6 @@ using System;
 
 public partial class Bullet : WeaponManager
 {
-	private float Range = 300; // The maximum range of the bullet
-	private float speed = 500; // The speed of the bullet
 	private float distanceTravelled; // The distance the bullet has travelled
 
 	public override void _Process(double delta)

@@ -3,11 +3,10 @@ using Godot;
 
 public partial class ChaseState : State
 {
-    private float range = 100;
     public override void Enter()
     {
         base.Enter();
-        GD.Print("Entering ChageState");
+        GD.Print("Entering ChaseState");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -23,10 +22,12 @@ public partial class ChaseState : State
 
     protected virtual void Attack()
     {
-        if (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < range)
+        if (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < attackRange)
         {
             GD.Print("Attacking player");
+            //EmitSignal(nameof(Transitioned), "AttackState"); // Emit the signal to transition to AttackState
         }
+
     }
 
     protected virtual void Move()

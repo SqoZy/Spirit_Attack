@@ -35,9 +35,8 @@ shape = SubResource("RectangleShape2D_c5343")
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("2_cb3gk")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_giasi")
-initialState = NodePath("ChaseState")
 
 [node name="AttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_xy3bv")

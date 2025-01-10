@@ -4,8 +4,9 @@ using System.Threading.Tasks;
 
 public partial class AttackState : State
 {
-    [Export] private float attackRange = 100;
-    [Export] private float attackCooldown = 1.0f;
+    [Export] private float attackCooldown;
+    [Export] private float initiatingAttackTime;
+    [Export] private float attackDamage;
 
     public override void Enter()
     {
@@ -20,21 +21,25 @@ public partial class AttackState : State
 
         if (player == null) return;
 
-            AttackPlayer();
+        AttackPlayer();
 
     }
 
     private async void AttackPlayer()
     {
-            GD.Print("Attacking player");
-            // initate attack animation
-            await Attack();
+        GD.Print("Attacking player");
+        await Attack();
     }
 
     private async Task Attack()
     {
-        await Task.Delay(TimeSpan.FromSeconds(attackCooldown));
-
+        // initiate attack animation towards the players location.
+        await Task.Delay(TimeSpan.FromSeconds(initiatingAttackTime));
+        if (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < attackRange)
+        {
+            player.GetNode<HealthManager>("HealthManager").TakeDamage((int)attackDamage);
+        }
+        else GD.Print("Player out of range"); // logic to go back to the chasing state
     }
 
     public override void Exit()

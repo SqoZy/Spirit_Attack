@@ -3,8 +3,8 @@ using System;
 
 public partial class WeaponManager : Node2D
 {
-	private float Range = 300;
-	private float speed = 500; // The speed of the bullet
+	protected float Range = 300;
+	protected float speed = 500; // The speed of the bullet
 
 	public override void _Ready()
 	{

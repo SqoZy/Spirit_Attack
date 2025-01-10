@@ -5,8 +5,9 @@ public partial class State : Node
 {
     [Export] protected CharacterBody2D enemy;
     [Export] protected float speed;
+    [Export] protected float chaseRange;
+    [Export] protected float attackRange;
     protected Node2D player;
-
 
     [Signal]
     public delegate void TransitionedEventHandler();
@@ -29,10 +30,5 @@ public partial class State : Node
     public virtual void PhysicsUpdate(float delta)
     {
         // Your physics update logic here
-    }
-
-    public void TriggerTransition()
-    {
-        EmitSignal(nameof(TransitionedEventHandler));
     }
 }

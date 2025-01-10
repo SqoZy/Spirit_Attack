@@ -37,19 +37,28 @@ script = ExtResource("3_abphd")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("4_ryyts")
-initialState = NodePath("ChaseState")
-
-[node name="AttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("6_wnavj")
-enemy = NodePath("../..")
-speed = 50.0
+initialState = NodePath("WanderingState")
 
 [node name="ChaseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_2gck8")
 enemy = NodePath("../..")
+speed = 100.0
+chaseRange = 500.0
+attackRange = 100.0
+
+[node name="AttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_wnavj")
+attackCooldown = 2.0
+initiatingAttackTime = 2.0
+attackDamage = 10.0
+enemy = NodePath("../..")
 speed = 50.0
+chaseRange = 100.0
+attackRange = 100.0
 
 [node name="WanderingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_v7rdk")
 enemy = NodePath("../..")
 speed = 50.0
+chaseRange = 500.0
+attackRange = 100.0
