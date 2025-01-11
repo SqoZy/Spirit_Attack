@@ -29,6 +29,14 @@ public partial class State : Node
 
     public virtual void PhysicsUpdate(float delta)
     {
-        // Your physics update logic here
+        if (player == null) return;
+        if (enemy == null) return;
     }
+
+    protected virtual void ChangeToAttack() => EmitSignal(nameof(Transitioned), this, "attackstate");
+
+    protected virtual void ChangeToChase() => EmitSignal(nameof(Transitioned), this, "chasestate");
+
+    protected virtual void ChangeToWandering() => EmitSignal(nameof(Transitioned), this, "wanderingstate");
+
 }

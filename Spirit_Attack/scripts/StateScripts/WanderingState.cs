@@ -51,14 +51,12 @@ public partial class WanderingState : State
 
     public override void PhysicsUpdate(float delta)
     {
-        if (player != null && enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < chaseRange)
-        {
-            GD.Print("Transitioning to ChaseState");
-            EmitSignal(nameof(Transitioned), this, "chasestate");
-            return;
-        }
+        base._PhysicsProcess(delta);
 
-        if (enemy != null && isWandering && !isStopping)
+        if (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < chaseRange)
+            EmitSignal(nameof(Transitioned), this, "chasestate");
+
+        if (isWandering && !isStopping)
         {
             Vector2 newPosition = enemy.GlobalPosition + moveDirection * speed * delta;
             // Check if the new position is within the wander radius
@@ -79,6 +77,8 @@ public partial class WanderingState : State
             enemy.Velocity = Vector2.Zero;
         }
     }
+
+    //protected virtual void CheckChaseState() =>
 
     public override void Exit()
     {

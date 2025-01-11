@@ -19,8 +19,6 @@ public partial class AttackState : State
     {
         base.PhysicsUpdate(delta);
 
-        if (player == null) return;
-
         AttackPlayer();
 
     }

@@ -11,24 +11,17 @@ public partial class ChaseState : State
 
     public override void _PhysicsProcess(double delta)
     {
-        base._PhysicsProcess(delta); // call the base physics process
-
-        if (player != null)
-        {
-            Move();
-            Attack();
-        }
-    }
-
-    protected virtual void Attack()
-    {
-        if (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < attackRange)
-        {
-            GD.Print("Attacking player");
-            //EmitSignal(nameof(Transitioned), "AttackState"); // Emit the signal to transition to AttackState
-        }
+        base._PhysicsProcess(delta);
+        Move();
+        //CheckAttackState();
+        CheckWanderState();
 
     }
+
+    //protected virtual void CheckAttackState() => (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < attackRange) && ChangeToAttack();
+
+    protected virtual void CheckWanderState() => (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < chaseRange) ? ChangeToWandering();
+
 
     protected virtual void Move()
     {
