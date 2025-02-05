@@ -54,7 +54,7 @@ public partial class WanderingState : State
         base._PhysicsProcess(delta);
 
         if (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < chaseRange)
-            EmitSignal(nameof(Transitioned), this, "chasestate");
+            //ChangeToChase();
 
         if (isWandering && !isStopping)
         {

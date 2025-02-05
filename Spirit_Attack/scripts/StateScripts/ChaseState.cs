@@ -12,7 +12,9 @@ public partial class ChaseState : State
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        Move();
+        Vector2 direction = (player.GlobalPosition - enemy.GlobalPosition).Normalized();
+        enemy.Velocity = direction * speed;
+        enemy.MoveAndSlide();
         //CheckAttackState();
         CheckWanderState();
 
@@ -20,14 +22,9 @@ public partial class ChaseState : State
 
     //protected virtual void CheckAttackState() => (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < attackRange) && ChangeToAttack();
 
-    protected virtual void CheckWanderState() => (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < chaseRange) ? ChangeToWandering();
-
-
-    protected virtual void Move()
+    protected virtual void CheckWanderState()
     {
-
-        Vector2 direction = (player.GlobalPosition - enemy.GlobalPosition).Normalized();
-        enemy.Velocity = direction * speed;
-        enemy.MoveAndSlide();
+        if (enemy.GlobalPosition.DistanceTo(player.GlobalPosition) < chaseRange)
+            ChangeToWandering();
     }
 }

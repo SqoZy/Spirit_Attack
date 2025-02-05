@@ -29,8 +29,8 @@ public partial class State : Node
 
     public virtual void PhysicsUpdate(float delta)
     {
-        if (player == null) return;
-        if (enemy == null) return;
+        if (player == null || enemy == null) return;
+
     }
 
     protected virtual void ChangeToAttack() => EmitSignal(nameof(Transitioned), this, "attackstate");
